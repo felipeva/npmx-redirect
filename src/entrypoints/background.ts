@@ -2,13 +2,19 @@ import { enabledItem, excludedSitesItem } from '@/lib/storage';
 
 const REDIRECT_RULE_ID = 1;
 
-export default defineBackground(() => {
-  browser.runtime.onInstalled.addListener(() => syncRedirectRule());
-  browser.runtime.onStartup.addListener(() => syncRedirectRule());
-  enabledItem.watch(() => syncRedirectRule());
-  excludedSitesItem.watch(() => syncRedirectRule());
+let pending: Promise<void> = Promise.resolve();
 
-  syncRedirectRule();
+function queueSync() {
+  pending = pending.then(syncRedirectRule, syncRedirectRule);
+}
+
+export default defineBackground(() => {
+  browser.runtime.onInstalled.addListener(() => queueSync());
+  browser.runtime.onStartup.addListener(() => queueSync());
+  enabledItem.watch(() => queueSync());
+  excludedSitesItem.watch(() => queueSync());
+
+  queueSync();
 });
 
 /**
