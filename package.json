@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "description": "Redirects npmjs.com package pages to npmx.dev for a better browsing experience",
-  "packageManager": "pnpm@10.30.3",
   "type": "module",
   "scripts": {
     "dev": "wxt",
@@ -17,12 +16,8 @@
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt .",
     "fmt:check": "oxfmt --check .",
-    "commit": "cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
+    "commit": "cz",
+    "prepare": "husky"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -41,10 +36,27 @@
     "@wxt-dev/module-react": "^1.1.5",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.1",
     "oxfmt": "latest",
     "oxlint": "latest",
     "tailwindcss": "^4.2.1",
     "typescript": "latest",
     "wxt": "latest"
-  }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "*.{json,md,html,css}": [
+      "oxfmt"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "packageManager": "pnpm@10.30.3"
 }
