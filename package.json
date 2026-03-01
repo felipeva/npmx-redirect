@@ -1,6 +1,6 @@
 {
   "name": "npmx-ext",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "private": true,
   "description": "Redirects npmjs.com package pages to npmx.dev for a better browsing experience",
   "packageManager": "pnpm@10.30.3",
