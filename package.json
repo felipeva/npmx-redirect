@@ -16,7 +16,13 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt .",
-    "fmt:check": "oxfmt --check ."
+    "fmt:check": "oxfmt --check .",
+    "commit": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -33,6 +39,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@wxt-dev/module-react": "^1.1.5",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "oxfmt": "latest",
     "oxlint": "latest",
     "tailwindcss": "^4.2.1",
