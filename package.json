@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Redirects npmjs.com package pages to npmx.dev for a better browsing experience",
+  "packageManager": "pnpm@10.30.3",
   "type": "module",
   "scripts": {
     "dev": "wxt",
