@@ -35,11 +35,12 @@ async function syncRedirectRule() {
   const enabled = await enabledItem.getValue();
   const excluded = await excludedSitesItem.getValue();
 
-  await browser.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: [REDIRECT_RULE_ID],
-  });
-
-  if (!enabled) return;
+  if (!enabled) {
+    await browser.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: [REDIRECT_RULE_ID],
+    });
+    return;
+  }
 
   // Build excludedInitiatorDomains from the exclusion list so the redirect
   // rule doesn't fire when the user clicks a link FROM an excluded page.
@@ -57,6 +58,7 @@ async function syncRedirectRule() {
   }
 
   await browser.declarativeNetRequest.updateDynamicRules({
+    removeRuleIds: [REDIRECT_RULE_ID],
     addRules: [
       {
         id: REDIRECT_RULE_ID,
